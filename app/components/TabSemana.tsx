@@ -5,6 +5,13 @@ import { supabase, AGENDAMENTOS_TABLE, REGISTROS_TABLE } from '@/lib/supabase'
 import type { AgendamentoComRegistro } from '@/types'
 import CartaoAgendamento from './CartaoAgendamento'
 
+function dataLocal(d: Date) {
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
 function semanaAtual() {
   const now = new Date()
   const dow = now.getDay() // 0=Dom
@@ -13,14 +20,14 @@ function semanaAtual() {
   const domingo = new Date(segunda)
   domingo.setDate(segunda.getDate() + 6)
   return {
-    inicio: segunda.toISOString().split('T')[0],
-    fim: domingo.toISOString().split('T')[0],
+    inicio: dataLocal(segunda),
+    fim: dataLocal(domingo),
   }
 }
 
 function nomeDia(dateStr: string) {
   const d = new Date(dateStr + 'T12:00:00')
-  const hoje = new Date().toISOString().split('T')[0]
+  const hoje = dataLocal(new Date())
   if (dateStr === hoje) return 'Hoje'
   return d.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: '2-digit' })
 }
@@ -117,7 +124,7 @@ export default function TabSemana() {
       {!loading && (
         <div className="space-y-8">
           {grupos.map(({ data, items }) => {
-            const hojeStr = new Date().toISOString().split('T')[0]
+            const hojeStr = dataLocal(new Date())
             const isHoje = data === hojeStr
             return (
               <div key={data}>

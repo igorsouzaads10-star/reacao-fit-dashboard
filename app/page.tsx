@@ -1,5 +1,7 @@
 'use client'
 
+export const dynamic = 'force-dynamic'
+
 import { useState } from 'react'
 import TabHoje from './components/TabHoje'
 import TabSemana from './components/TabSemana'

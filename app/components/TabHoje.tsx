@@ -24,7 +24,7 @@ export default function TabHoje() {
     const { data: agendamentos, error: err1 } = await supabase
       .from(AGENDAMENTOS_TABLE)
       .select('*')
-      .eq('dia-da-visita', data)
+      .eq('dia_da_visita', data)
       .order('id')
 
     if (err1 || !agendamentos) {

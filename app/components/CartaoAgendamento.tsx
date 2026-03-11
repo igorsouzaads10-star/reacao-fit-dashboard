@@ -50,8 +50,8 @@ export default function CartaoAgendamento({ item, onUpdated, showDate }: Props) 
     }
   }
 
-  const dataFormatada = item['dia-da-visita']
-    ? new Date(item['dia-da-visita'] + 'T12:00:00').toLocaleDateString('pt-BR', {
+  const dataFormatada = item['dia_da_visita']
+    ? new Date(item['dia_da_visita'] + 'T12:00:00').toLocaleDateString('pt-BR', {
         weekday: 'short',
         day: '2-digit',
         month: '2-digit',

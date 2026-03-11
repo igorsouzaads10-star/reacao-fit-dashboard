@@ -43,9 +43,9 @@ export default function TabSemana() {
     const { data: agendamentos } = await supabase
       .from(AGENDAMENTOS_TABLE)
       .select('*')
-      .gte('dia-da-visita', inicio)
-      .lte('dia-da-visita', fim)
-      .order('dia-da-visita')
+      .gte('dia_da_visita', inicio)
+      .lte('dia_da_visita', fim)
+      .order('dia_da_visita')
 
     if (!agendamentos) {
       setLoading(false)
@@ -65,7 +65,7 @@ export default function TabSemana() {
     // Agrupar por dia
     const map = new Map<string, AgendamentoComRegistro[]>()
     for (const item of merged) {
-      const dia = item['dia-da-visita'] ?? 'sem-data'
+      const dia = item['dia_da_visita'] ?? 'sem-data'
       if (!map.has(dia)) map.set(dia, [])
       map.get(dia)!.push(item)
     }

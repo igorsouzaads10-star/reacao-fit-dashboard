@@ -58,8 +58,8 @@ export default function TabMetricas() {
     const dataHoje = hoje()
 
     const [{ data: agend }, { data: agendHoje }] = await Promise.all([
-      supabase.from(AGENDAMENTOS_TABLE).select('*').gte('dia-da-visita', inicio).lte('dia-da-visita', fim),
-      supabase.from(AGENDAMENTOS_TABLE).select('*').eq('dia-da-visita', dataHoje),
+      supabase.from(AGENDAMENTOS_TABLE).select('*').gte('dia_da_visita', inicio).lte('dia_da_visita', fim),
+      supabase.from(AGENDAMENTOS_TABLE).select('*').eq('dia_da_visita', dataHoje),
     ])
 
     const todos = agend ?? []
